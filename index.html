@@ -1,91 +1,86 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>To-Do List Life Dashboard</title>
-    <!-- Menghubungkan file HTML dengan 1 file CSS sesuai aturan folder -->
+    <title>Life Dashboard</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-    <main class="dashboard-container">
-        
-        <!-- 1. Bagian Sapaan, Jam, Tanggal, Custom Name & Light/Dark Mode -->
-        <section class="card greeting-section">
-            <div class="top-bar">
-                <button id="theme-toggle" class="btn-secondary">🌙 Dark Mode</button>
+    <div class="app-wrapper">
+        <!-- Header & Greeting -->
+        <header class="top-header">
+            <div class="header-left">
+                <h2 id="greeting-text">Welcome, <span id="user-name">Rizkya</span></h2>
+                <button id="edit-name-btn" class="btn-ghost" title="Edit Name">✏️ Edit Name</button>
             </div>
-            
-            <h1 id="clock">00:00:00</h1>
-            <p id="date">Memuat tanggal...</p>
-            
-            <div class="greeting-box">
-                <h2 id="greeting-text">Selamat Datang, <span id="user-name">Rizkya</span></h2>
-                <button id="edit-name-btn" class="btn-small" title="Ubah Nama">✏️ Ubah Nama</button>
-            </div>
-        </section>
 
-        <!-- 2. Bagian Focus Timer & Ubah Durasi Pomodoro -->
-        <section class="card timer-section">
-            <h3>Focus Timer</h3>
-            <div id="timer-display">25:00</div>
-            
+            <div class="header-right">
+                <div class="datetime-group">
+                    <span id="clock">00:00:00</span>
+                    <span id="date">Loading date...</span>
+                </div>
+                <button id="theme-toggle" class="btn-theme">🌙 Dark</button>
+            </div>
+        </header>
+
+        <!-- Focus Timer -->
+        <section class="timer-banner">
+            <div class="timer-info">
+                <span class="badge">FOCUS SESSION</span>
+                <div id="timer-display">25:00</div>
+            </div>
+
             <div class="timer-controls">
-                <button id="start-btn" class="btn-primary">Start</button>
-                <button id="stop-btn" class="btn-secondary">Stop</button>
-                <button id="reset-btn" class="btn-secondary">Reset</button>
+                <button id="start-btn" class="btn-secondary">▶ Start</button>
+                <button id="stop-btn" class="btn-secondary">⏸ Stop</button>
+                <button id="reset-btn" class="btn-secondary">↺ Reset</button>
             </div>
 
-            <!-- Tantangan: Ubah Waktu Pomodoro -->
             <div class="timer-setting">
-                <label for="custom-minutes">Durasi (menit):</label>
+                <label for="custom-minutes">Minutes:</label>
                 <input type="number" id="custom-minutes" min="1" max="120" value="25">
-                <button id="set-timer-btn" class="btn-small">Set</button>
+                <button id="set-timer-btn" class="btn-secondary">Set</button>
             </div>
         </section>
 
-        <!-- 3. Bagian Daftar Tugas (To-Do List) & Pengurutan (Sort) -->
-        <section class="card tasks-section">
-            <div class="section-header">
-                <h3>Tasks</h3>
-                <!-- Tantangan: Urutkan Tugas -->
+        <!-- To-Do List -->
+        <main class="workspace-tasks">
+            <div class="workspace-header">
+                <h3>Task List</h3>
                 <select id="sort-tasks">
-                    <option value="default">Urutkan: Terbaru</option>
-                    <option value="az">Abjad (A - Z)</option>
-                    <option value="za">Abjad (Z - A)</option>
-                    <option value="incomplete">Belum Selesai Dulu</option>
-                    <option value="completed">Sudah Selesai Dulu</option>
+                    <option value="default">Sort: Latest</option>
+                    <option value="az">Name (A - Z)</option>
+                    <option value="za">Name (Z - A)</option>
+                    <option value="incomplete">Pending First</option>
+                    <option value="completed">Completed First</option>
                 </select>
             </div>
 
             <form id="task-form">
-                <input type="text" id="task-input" placeholder="Tambah tugas baru..." required>
-                <button type="submit" class="btn-primary">Add</button>
+                <input type="text" id="task-input" placeholder="Add a new task and press Enter..." required>
+                <button type="submit" class="btn-primary">+ Add</button>
             </form>
 
-            <ul id="task-list">
-                <!-- Daftar tugas akan dimunculkan oleh JavaScript di sini -->
-            </ul>
-        </section>
+            <ul id="task-list"></ul>
+        </main>
 
-        <!-- 4. Bagian Tautan Cepat (Quick Links) -->
-        <section class="card links-section">
-            <h3>Quick Links</h3>
-            <form id="link-form">
-                <input type="text" id="link-name" placeholder="Nama link (misal: Google)" required>
-                <input type="url" id="link-url" placeholder="https://..." required>
-                <button type="submit" class="btn-primary">Add Link</button>
-            </form>
-
-            <div id="links-container">
-                <!-- Tombol tautan cepat akan dimunculkan oleh JavaScript di sini -->
+        <!-- Quick Links -->
+        <footer class="links-dock">
+            <div class="dock-header">
+                <h3>Quick Links</h3>
+                <form id="link-form">
+                    <input type="text" id="link-name" placeholder="Site name" required>
+                    <input type="url" id="link-url" placeholder="https://..." required>
+                    <button type="submit" class="btn-primary">+ Link</button>
+                </form>
             </div>
-        </section>
 
-    </main>
+            <div id="links-container"></div>
+        </footer>
+    </div>
 
-    <!-- Menghubungkan file HTML dengan 1 file JavaScript di bagian paling bawah -->
     <script src="js/script.js"></script>
 </body>
 </html>
